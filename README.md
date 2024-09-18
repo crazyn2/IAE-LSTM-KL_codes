@@ -1,10 +1,10 @@
-# PyTorch Implementation of Deep SVDD
+# PyTorch Implementation of IAE-LSTM-KL
 This repository provides a [PyTorch](https://pytorch.org/) implementation of the *IAE-LSTM-KL* method presented in our
-IEEE TIM 2024 paper "mproved AutoEncoder with LSTM Module and KL Divergence for Anomaly Detection".
+IEEE TIM 2024 paper "Improved AutoEncoder with LSTM Module and KL Divergence for Anomaly Detection".
 
 
 ## Citation and Contact
-You find a PDF of the Deep One-Class Classification ICML 2018 paper at 
+You find a PDF of the "Improved AutoEncoder with LSTM Module and KL Divergence for Anomaly Detection" IEEE TIM 2024 paper at 
 [https://ieeexplore.ieee.org/document/10680570](https://ieeexplore.ieee.org/document/10680570).
 
 If you use our work, please also cite the paper:
@@ -39,10 +39,10 @@ This code is written in `Python 3.10` and requires the packages listed in `requi
 
 Clone the repository to your local machine and directory of choice:
 ```
-git clone https://github.com/lukasruff/Deep-SVDD-PyTorch.git
+git clone https://github.com/crazyn2/IAE-LSTM-KL_codes.git
 ```
 
-To run the code, we recommend setting up a virtual environment, e.g. using `virtualenv` or `conda`:
+To run the code, we recommend setting up a virtual environment, e.g. using `conda`:
 
 ### `conda`
 ```
@@ -57,6 +57,10 @@ while read requirement; do conda install -n myenv --yes $requirement; done < req
 
 We currently have implemented the FMNIST, CIFAR-10, MvTec and WTBI datasets and 
 simple LeNet-type networks.
+
+## Credits
+- [Deep SVDD](https://github.com/lukasruff/Deep-SVDD-PyTorch)
+- [Improved Autoencoder for Unsupervised Anomaly Detection](https://github.com/wogong/pt-iaead)
 
 ## License
 MIT
