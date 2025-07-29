@@ -72,7 +72,7 @@ class BaseMsdV1(pl.LightningModule):
         # Reason: a zero unit can be trivially matched with zero weights.
         c[(abs(c) < eps) & (c < 0)] = -eps
         c[(abs(c) < eps) & (c > 0)] = eps
-
+        net.train()
         self.center = c
 
     def training_step(self, train_batch, batch_idx):

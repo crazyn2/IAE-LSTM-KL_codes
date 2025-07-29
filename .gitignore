@@ -25,3 +25,4 @@ mlruns/
 .vscodium-server/
 mylist*
 .vscode
+scripts/

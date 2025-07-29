@@ -9,7 +9,7 @@ import torch
 from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
 import numpy as np
-from utils import TorchTSNE as TSNE
+# from utils import TorchTSNE as TSNE
 from sklearn.metrics import roc_auc_score
 from collections import namedtuple
 
@@ -160,13 +160,13 @@ class BaseAe(pl.LightningModule):
         image = ToTensor()(image)
         self.logger.experiment.add_image(name, image, step)
 
-    def log_tsne(self, data_batch, labels, name, step):
-        if data_batch.dim() != 2:
-            data_batch = data_batch.contiguous().view(data_batch.size(0), -1)
-        X_emb = TSNE(n_components=2, perplexity=30,
-                     n_iter=1000).fit_transform(data_batch)
-        self.log_img(X_emb.cpu().detach().numpy(),
-                     labels.cpu().detach().numpy(), name, step)
+    # def log_tsne(self, data_batch, labels, name, step):
+        # if data_batch.dim() != 2:
+        #     data_batch = data_batch.contiguous().view(data_batch.size(0), -1)
+        # X_emb = TSNE(n_components=2, perplexity=30,
+        #              n_iter=1000).fit_transform(data_batch)
+        # self.log_img(X_emb.cpu().detach().numpy(),
+        #              labels.cpu().detach().numpy(), name, step)
 
     def log_pca(self, data_batch, labels, name, step):
         if data_batch.dim() != 2:

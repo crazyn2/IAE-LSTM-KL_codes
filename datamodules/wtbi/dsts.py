@@ -169,7 +169,7 @@ class WtbiV2(WtbiV1):
 
 
 if __name__ == "__main__":
-    dataset = WtbiV1(train=True, reload=False, radio=0.05)
+    dataset = WtbiV1(train=True, reload=False)
     print(dataset.__len__())
     # dataset = WtbiV1(train=True, reload=True)
     # print(dataset.__len__())

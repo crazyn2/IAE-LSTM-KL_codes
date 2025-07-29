@@ -6,11 +6,11 @@ import time
 sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(__file__))
 from datamodules.wtbi import WtbiDmV1
-from models.fmnist import AeV4V1
-from models.fmnist import AeV4V1MsdLstmV2
+from models.fmnist.ae import AeV4V1
+from models.fmnist.msd import AeV4V1MsdLstmV2
 from utils import transfer_weights
 from utils import init_envir
-from utils import load_pre_ae_model
+from utils import load_pre_ae_modelv2
 
 
 def fmnist_lenet(bash_log_name,
@@ -26,15 +26,16 @@ def fmnist_lenet(bash_log_name,
                  enable_progress_bar=False):
     datamodule = WtbiDmV1(batch_size=512, seed=seed, reload=True)
     auto_enc = AeV4V1.load_from_checkpoint(
-        load_pre_ae_model(bash_log_name='bash-logv3',
-                        #   batch_size=args.batch_size,
-                          batch_size=128,
-                          radio=args.radio,
-                          dataset='wtbi',
-                          n_epochs=args.pre_epochs,
-                          seed=args.seed,
-                          normal_class=None,
-                          model_name="aev4v1"))
+        load_pre_ae_modelv2(
+            bash_log_name='bash-logv3',
+            #   batch_size=args.batch_size,
+            batch_size=128,
+            radio=args.radio,
+            dataset='wtbi',
+            n_epochs=args.pre_epochs,
+            seed=args.seed,
+            normal_class=None,
+            model_name="aev4v1"))
 
     lnr_svdd = AeV4V1MsdLstmV2(seed=seed,
                                nu=0.898364,
@@ -52,6 +53,7 @@ def fmnist_lenet(bash_log_name,
                          max_epochs=epochs,
                          enable_progress_bar=enable_progress_bar,
                          enable_model_summary=False)
+    lnr_svdd.train()
     trainer.fit(model=lnr_svdd, datamodule=datamodule)
 
 
